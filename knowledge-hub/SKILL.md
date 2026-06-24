@@ -1,19 +1,24 @@
 ---
 name: knowledge-hub
-description: "知识中枢——Wiki管理+笔记存档+可视化+文件规划。覆盖wiki全流程(摄取/检索/查健康)、对话存档(save)、自主研究(autoresearch)、深度思考(think)、Obsidian增强、Canvas白板、文件规划。触发: wiki/存档/ingest/查知识/lint/canvas/规划任务。"
+description: "知识中枢(v1.1 吸收引用管理/Zotero)——Wiki管理+笔记存档+可视化+文件规划+引用管理。覆盖wiki全流程(摄取/检索/查健康)、对话存档(save)、自主研究(autoresearch)、深度思考(think)、Obsidian增强、Canvas白板、文件规划、Zotero引用。触发: wiki/存档/ingest/查知识/lint/canvas/规划任务/引用管理/Zotero。"
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   mega: true
   subskills:
     wiki: [wiki, wiki-ingest, wiki-query, wiki-lint, wiki-mode, wiki-retrieve, wiki-cli, wiki-fold]
     notes: [save, autoresearch, think, obsidian-bases, obsidian-markdown]
     visual: [canvas, excalidraw, defuddle]
     planning: [planning-with-files-zh]
+    reference: [doi-to-zotero, citation-management]
+  absorbed_from:
+    - pyzotero (scientific-agent-skills): Zotero API integration
+    - citation-management (scientific-agent-skills): reference formatting
+    - paperzilla (scientific-agent-skills): paper database management
 ---
 
-# 🧠 知识中枢 (knowledge-hub)
+# 🧠 知识中枢 (knowledge-hub) v1.1
 
-Wiki 体系 + 笔记存档 + 可视化 + 任务规划，一站式知识管理。
+Wiki 体系 + 笔记存档 + 可视化 + 任务规划 + 引用管理，一站式知识管理。
 
 ## 意图路由表
 
@@ -55,8 +60,17 @@ Wiki 体系 + 笔记存档 + 可视化 + 任务规划，一站式知识管理。
 | 复杂任务自动规划 | `planning-with-files-zh` ← 复杂任务自动触发 |
 | "用文件规划法做XXX" | `planning-with-files-zh` |
 
+### 📎 引用管理（NEW v1.1）
+
+| 你说... | 路由到 |
+|---------|--------|
+| "DOI加到Zotero" / "导入引用" | `doi-to-zotero` |
+| "格式化引用" / "参考文献排版" | `citation-management` |
+| "整理论文库" / "Zotero去重" | `doi-to-zotero` + Zotero API |
+
 ## 执行规则
 
 1. wiki-* 系列按标准流程串行（ingest → lint → query）
 2. save 操作后提示存档位置
 3. 复杂任务自动触发 planning-with-files-zh
+4. 引用管理优先用 doi-to-zotero 自动导入
